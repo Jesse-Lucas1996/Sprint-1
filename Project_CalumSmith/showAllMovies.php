@@ -1,3 +1,5 @@
+// Jesse Lucas, Calum Smith, Nathan Merrit
+// Team C
 <!DOCTYPE html>
 <html>
 <style>
@@ -64,7 +66,7 @@ th {
 <?php
 echo "<table style='border: solid 1px black;'>";
 echo "<tr><th>ID</th><th>Title</th><th>Studio</th><th>Status</th><th>Sound</th><th>Versions</th><th>RecGetPrice</th><th>Rating</th><th>Year</th><th>Genre</th><th>Aspect</th><th>Frequency</th></tr>";
-
+echo "<div class='content table-responsive table-full-width'>";
 class TableRows extends RecursiveIteratorIterator
 {
     function current()
@@ -80,6 +82,10 @@ class TableRows extends RecursiveIteratorIterator
     function endChildren()
     {
         echo "</tr>";
+    }
+    function Responsive()
+    {
+	echo "</div>";    
     }
 }
 $servername = "localhost";
