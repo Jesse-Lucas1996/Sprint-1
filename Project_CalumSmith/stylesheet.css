@@ -1,26 +1,29 @@
+// Jesse Lucas, Calum Smith, Nathan Merrit 
+// Team C 
+
 body {
   background-color: lightblue;
 }
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 800px) { // responsive here
   h1, body, h1 {
     width: 100%; /* The width is 100%, when the viewport is 800px or smaller */
   }
 }
 
 
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: 1200px) {  // responsive here
   h1, body, h1 {
     width: 80%; /* The width is 100%, when the viewport is 800px or smaller */
   }
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 500px) {  // responsive here
   h1, body, h1 {
     width: 75%; 
   }
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 400px) {  // responsive here
   h1, body, h1 {
     width: 50%; 
   }
