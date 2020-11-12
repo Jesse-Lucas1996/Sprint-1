@@ -13,19 +13,24 @@ body {
 
 @media screen and (max-width: 1200px) {  // responsive here
   h1, body, h1 {
-    width: 80%; /* The width is 100%, when the viewport is 800px or smaller */
+    width: 100%; /* The width is 100%, when the viewport is 800px or smaller */
+  }
+}
+@media screen and (max-width: 1100px) {  // responsive here
+  h1, body, h1 {
+    width: 100%; /* The width is 100%, when the viewport is 800px or smaller */
   }
 }
 
 @media screen and (max-width: 500px) {  // responsive here
   h1, body, h1 {
-    width: 75%; 
+    width: 100%; 
   }
 }
 
 @media screen and (max-width: 400px) {  // responsive here
   h1, body, h1 {
-    width: 50%; 
+    width: 100%; 
   }
 }
 
@@ -43,6 +48,15 @@ p {
 
 div {
 	font-family: verdana;
+}
+
+
+.topnav ul 
+{
+	margin: 0;
+	margin-left: auto;
+	width: 100%;
+	display:inline-block;
 }
 
 .topnav {
