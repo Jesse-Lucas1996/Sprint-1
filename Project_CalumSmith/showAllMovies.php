@@ -1,115 +1,73 @@
 // Jesse Lucas, Calum Smith, Nathan Merrit
-// Team C
 <!DOCTYPE html>
-<html>
-<style>
-html {
-  color:white;
-}
+<html lang="en" width = "100%" height = "100%">
 
-h1 {
-  font-family: verdana;
-  color: white;
-  text-align: center;
-}
-
-h2 {
-  font-family: verdana;
-  color: black;
-  text-align: left;
-}
-
-h3 {
-  font-family: verdana;
-  color: black;
-  text-align: left;
-}
-
-div {
-  border-radius: 5px;
-  background-color: #add8e6;
-}
-
-table {
-  border-collapse: collapse;
-  width: 100%;
-}
-
-th, td {
-  text-align: left;
-  padding: 8px;
-  font-family: verdana;
-  color: black;
-}
-
-tr:nth-child(even){background-color: #f2f2f2}
-
-th {
-  background-color: #4169E1;
-  color: white;
-}
-</style>
 <head>
-    <link rel="stylesheet" href="stylesheet.css">
-</head>
-<title>List Of Movies</title>
-<body>
-<h1>Show Movies Page</h1>
-<div class="topnav" id="myTopnav">
-	<a href="home.html">Home</a>
-	<a href="http://localhost/Project_CalumSmith/showAllMovies.php">Show Movies</a>
-  <a href="http://localhost/Project_CalumSmith/search.php">Search</a>
-  <a href="http://localhost/Project_CalumSmith/chart.php">Chart</a>
-    <i class="fa fa-bars"></i>
-  </a>
-</div>
+    <title>Search Page</title>
+    <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width = 100%">
+    <link rel="stylesheet" href="CssExample.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	</head>
+	 
+
+
+        <main class="col-lg-10">
+            <!-- 10 here  -->
+      
+       
 <?php
-echo "<table style='border: solid 1px black;'>";
-echo "<tr><th>ID</th><th>Title</th><th>Studio</th><th>Status</th><th>Sound</th><th>Versions</th><th>RecGetPrice</th><th>Rating</th><th>Year</th><th>Genre</th><th>Aspect</th><th>Frequency</th></tr>";
-echo "<div class='content table-responsive table-full-width'>";
-class TableRows extends RecursiveIteratorIterator
-{
-    function current()
-    {
-        return "<td style='width:150px;border:1px solid black;'>" . parent::current();
-    }
 
-    function beginChildren()
-    {
-        echo "<tr>";
-    }
+echo "<table style='border: solid 2px black;'>";
+echo '<table class="table-striped table-bordered table-responsive table">';
+echo "<tr><th>ID</th><th>Title</th><th>Studio</th><th>Status</th><th>Sound</th><th>Versions</th><th>RecRetPrice</th><th>Rating</th><th>Year</th><th>Genre</th><th>Aspect</th><th>Frequency</th></tr>";
+class TableRows extends RecursiveIteratorIterator {
+ 
 
-    function endChildren()
-    {
-        echo "</tr>";
+    function __construct($it) {
+        parent::__construct($it, self::LEAVES_ONLY);
     }
-    function Responsive()
-    {
-	echo "</div>";    
+    function current() {
+        return "<td style='width:150px;border:1px solid black;'> " . parent::current(). "</td> ";
     }
-}
-$servername = "localhost";
-$username = "root";
+    function beginChildren() {
+        echo "<tr> ";
+    }
+    function endChildren() {
+        echo "</tr> " . "\n";
+    }
+	function responsive(){
+	echo '</table> width 100%';
+	}
+	
+} 
+$username = 'root';
 $password = '';
-$dbname = "moviesDB";
-
-try
+try 
 {
-    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $stmt = $conn->prepare("SELECT * FROM `movies`");
-    $stmt->execute();
+$conn = new PDO('mysql:host=localhost;dbname=movie', $username, $password); 
+$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+$stmt = $conn->prepare('SELECT * FROM `movies` WHERE 1');
+$stmt->execute();
     $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
-    foreach (new TableRows(new RecursiveArrayIterator($stmt->fetchall())) as $k => $v)
-    {
+    foreach(new TableRows(new RecursiveArrayIterator($stmt->fetchall())) as $k=>$v) {
         echo $v;
-    }
 }
-catch(PDOException $e)
+}
+
+catch(PDOException $e) 
 {
-    echo 'Error: ' . $e->getMessage();
+  echo 'ERROR: ' . $e->getMessage();
 }
+$conn = null;
+
+
 
 ?>
+
+      </main>
+    </div> 
+
 </body>
+
 </html>
